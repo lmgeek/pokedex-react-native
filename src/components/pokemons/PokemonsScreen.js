@@ -3,6 +3,10 @@ import { Text, FlatList, View, Pressable, StyleSheet } from 'react-native';
 import Http from '../../libs/http'
 import PokemonItem from './pokemonsItem';
 
+import ActionButton from 'react-native-action-button';
+import Icon from 'react-native-vector-icons/Ionicons';
+
+
 class PokemonsScreen extends Component {
 
     constructor(props){
@@ -43,8 +47,38 @@ class PokemonsScreen extends Component {
         const  { pokemons } = this.state;
         console.log("POKE", pokemons)
         return (
-            <View>
+            <View style={styles.container}>
                 <Text style={styles.title} >Pokedex</Text>
+
+                <Pressable onPress={this.handlePress}>
+                    <Text>Show Detail</Text>
+                </Pressable>
+
+                <ActionButton buttonColor="rgba(108,70,1176,1)" style={styles.actionButton}>
+                    <Icon name="ios-ellipsis-horizontal-sharp" />
+                    <ActionButton.Item
+                        buttonColor="#9b59b6"
+                        title="My favorites pokemons"
+                        onPress={() => console.log('notes tapped!')}>
+                        <Icon name="ios-heart" style={styles.actionButtonIcon} />
+                    </ActionButton.Item>
+                    <ActionButton.Item
+                        buttonColor="#3498db"
+                        title="All types"
+                        onPress={() => {}}>
+                        <Icon
+                        name="ios-earth"
+                        style={styles.actionButtonIcon}
+                        />
+                    </ActionButton.Item>
+                    <ActionButton.Item
+                        buttonColor="#1abc9c"
+                        title="Search"
+                        onPress={() => {}}>
+                        <Icon name="ios-search" style={styles.actionButtonIcon} />
+                    </ActionButton.Item>
+                </ActionButton>
+                
                 <FlatList
                     data={pokemons}
                     //renderItem={({ item }) => <PokemonItem item={item}/>}
@@ -56,12 +90,7 @@ class PokemonsScreen extends Component {
                     onEndReached={this.loadMorePokemons}
                     onEndReachedThreshold={0.1}
                 />
-                <Text>
-                    Pokemons Screen
-                </Text>
-                <Pressable onPress={this.handlePress}>
-                    <Text>Show Detail</Text>
-                </Pressable>
+
             </View>
         );
     }
@@ -78,6 +107,19 @@ const styles = StyleSheet.create({
     },
     loading:{
         marginTop: 10,
+    },
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        backgroundColor: '#F5FCFF',
+      },
+    actionButtonIcon: {
+        fontSize: 20,
+        height: 22,
+        color: 'white',
+    },
+    actionButton: {
+        zIndex: 9999
     }
 });
 

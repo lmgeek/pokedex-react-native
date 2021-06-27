@@ -10,12 +10,13 @@ import React from 'react';
 import { Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import PokemonsStack from './src/components/pokemons/PokemonsStack';
+import AppStack from './src/AppStack';
 
 const App = () => {
 
   return (
     <NavigationContainer>
-      <PokemonsStack/>
+      <AppStack/>
     </NavigationContainer>
     
   );
