@@ -42,6 +42,12 @@ class PokemonsScreen extends Component {
         this.props.navigation.navigate('Detail')
     }
 
+    goPokemon = (pokemon) => {
+
+        this.props.navigation.navigate('Detail', {pokemon})
+
+    }
+
     render () {
 
         const  { pokemons } = this.state;
@@ -83,7 +89,7 @@ class PokemonsScreen extends Component {
                     data={pokemons}
                     //renderItem={({ item }) => <PokemonItem item={item}/>}
                     renderItem={({ item, index}) => {
-                        return <View style={{marginLeft:(index%2)*10,flex:1}} ><PokemonItem /*onPress={this.goPokemon.bind(this)}*/ url={item.url}/></View>
+                        return <View style={{marginLeft:(index%2)*10,flex:1}} ><PokemonItem onPress={this.goPokemon.bind(this)} url={item.url}/></View>
                     }}
                     keyExtractor={item => item.name}
                     numColumns={2}

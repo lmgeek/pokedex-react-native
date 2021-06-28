@@ -87,6 +87,7 @@ const PokemonUtil = {
             return  {uri:null};
         }else{
             return {uri:pokemon.sprites.front_default}
+            // return {uri:pokemon.sprites.other.dream_world.front_default}
         }   
     },
 
